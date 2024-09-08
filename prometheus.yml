@@ -14,7 +14,7 @@ scrape_configs:
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
-
+    scheme: https
     static_configs:
       - targets: ['nest-js-app-production.up.railway.app:443']
 
