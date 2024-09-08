@@ -16,7 +16,7 @@ scrape_configs:
     scrape_interval: 5s
 
     static_configs:
-      - targets: ['nest-js-app-production.up.railway.app:8080']
+      - targets: ['nest-js-app.railway.internal:8080']
 
   # - job_name: 'postgres'
   #   scrape_interval: 5s
