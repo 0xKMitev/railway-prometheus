@@ -15,7 +15,7 @@ scrape_configs:
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 15s
     metrics_path: "/actuator/prometheus"
-    scheme: https
+    # scheme: https
     static_configs:
       - targets: ['test-env-11.eba-mjv4k9hc.eu-central-1.elasticbeanstalk.com:8080']
 
