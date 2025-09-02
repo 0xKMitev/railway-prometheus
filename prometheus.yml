@@ -14,10 +14,10 @@ scrape_configs:
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
+    metrics_path: "/actuator/prometheus"
     # scheme: https
     static_configs:
       - targets: ['localhost:8080']
-      - metrics_path: "/actuator/prometheus"
 
   # - job_name: 'postgres'
   #   scrape_interval: 5s
