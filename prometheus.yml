@@ -16,7 +16,7 @@ scrape_configs:
     scrape_interval: 5s
     # scheme: https
     static_configs:
-      - targets: ['http://localhost:8080/actuator/prometheus']
+      - targets: ['localhost:8080/actuator/prometheus']
 
   # - job_name: 'postgres'
   #   scrape_interval: 5s
