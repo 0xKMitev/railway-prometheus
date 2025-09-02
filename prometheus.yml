@@ -17,7 +17,7 @@ scrape_configs:
     metrics_path: "/actuator/prometheus"
     # scheme: https
     static_configs:
-      - targets: ['test-env-11.eba-mjv4k9hc.eu-central-1.elasticbeanstalk.com:8080']
+      - targets: ['test-env-11.eba-mjv4k9hc.eu-central-1.elasticbeanstalk.com']
 
   # - job_name: 'postgres'
   #   scrape_interval: 5s
