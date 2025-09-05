@@ -7,8 +7,9 @@ global:
 
 remote_write:
   - url: "${BETTERSTACK_PROMETHEUS_URL}"
-    headers:
-      Authorization: "Bearer ${BETTERSTACK_TOKEN}"
+    authorization:
+      type: Bearer
+      credentials: "${BETTERSTACK_TOKEN}"
     queue_config:
       max_samples_per_send: 1000
       batch_send_deadline: 5s
