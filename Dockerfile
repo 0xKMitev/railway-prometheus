@@ -1,19 +1,16 @@
 FROM prom/prometheus
 
-# copy the Prometheus configuration file
-COPY prometheus.yml /etc/prometheus/prometheus.yml
+# Install envsubst for environment variable substitution
+USER root
+RUN apk add --no-cache gettext
 
-# expose the Prometheus server port
+# Copy template file instead of final config
+COPY prometheus.yml.template /etc/prometheus/prometheus.yml.template
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Expose the Prometheus server port
 EXPOSE 9090
 
-# set the entrypoint command
-USER root
-ENTRYPOINT [ "/bin/prometheus" ]
-CMD        [ "--config.file=/etc/prometheus/prometheus.yml", \
-             "--storage.tsdb.path=/prometheus", \
-             "--storage.tsdb.retention.time=365d", \
-             "--web.console.libraries=/usr/share/prometheus/console_libraries", \
-             "--web.console.templates=/usr/share/prometheus/consoles", \
-             "--web.external-url=http://localhost:9090", \
-             "--log.level=info"]
- 
+# Use custom entrypoint that processes template
+ENTRYPOINT ["/entrypoint.sh"]

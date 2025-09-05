@@ -1,10 +1,20 @@
 global:
   scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 15s
 
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
     monitor: 'railway-prom'
+  
+remote_write:
+  - url: "${BETTERSTACK_PROMETHEUS_URL}"
+    authorization:
+      type: Bearer
+      credentials: "${BETTERSTACK_TOKEN}"
+    queue_config:
+      max_samples_per_send: 1000
+      batch_send_deadline: 5s
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
@@ -17,7 +27,7 @@ scrape_configs:
     metrics_path: "/actuator/prometheus"
     # scheme: https
     static_configs:
-      - targets: ['test-env-11.eba-mjv4k9hc.eu-central-1.elasticbeanstalk.com']
+      - targets: ['${APP_TARGET}']
 
   # - job_name: 'postgres'
   #   scrape_interval: 5s
